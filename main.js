@@ -16,7 +16,10 @@ const startTimer = () => {
   // declare function to execute every 1 sec
   const countdown = () => {
     // decrement timer value
+    timerValue--;
     // if quizComplete is true then stop timer
+    if (quizComplete) {
+    }
     // check if timer reaches 0
     // if true render game over
   };
@@ -85,8 +88,11 @@ const startQuiz = () => {
   document.getElementById("startQuiz").style.display = "none";
 
   // start timer
+  startTimer();
   // render timer section
+  renderTimerSection();
   // render question section
+  renderQuestionSection();
 };
 
 // add event listeners
