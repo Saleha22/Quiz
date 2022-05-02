@@ -80,6 +80,14 @@ const renderTimerSection = () => {
 
 const renderQuestionSection = () => {
   // use HTML as guide and build in JS
+  if (questionIndex < questions.length) {
+    let question = questions[questionIndex];
+    let currentAnswers = answers[questionIndex];
+    let output = `<span class='question'>${question}</span>`;
+    document.getElementById("questionSection").innerHTML = output;
+  } else {
+    renderGameOver();
+  }
   // append section to main
   // add click event listener on #question-section
 };
