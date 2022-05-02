@@ -1,5 +1,19 @@
 // global declarations
-const questions = [];
+const questions = [
+  "What is the capital of Argentina?",
+  "What is the smallest country in Europe?",
+  "What is the largest country in Europe?",
+  "What is the capital of Russia?",
+  "What language is spoken in Italy?",
+];
+
+const answers = [
+  ["0|London", "0|Brisbane", "0|Lisbon", "1|Buenos Aires"],
+  ["0|Monaco", "0|Jersey", "1|Vatican City", "0|San Marino"],
+  ["1|Ukraine", "0|Spain", "0|Finland", "0|Latvia"],
+  ["0|Saint Petersburg", "1|Moscow", "0|Novosibirsk", "0|Dubai"],
+  ["0|Spanish", "1|Italian", "0|German", "0|Polish"],
+];
 let questionIndex = 0;
 let timerValue = 10 * questions.length;
 let quizComplete = false;
