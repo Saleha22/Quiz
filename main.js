@@ -31,6 +31,7 @@ const startTimer = () => {
   const countdown = () => {
     // decrement timer value
     timerValue--;
+    renderTimerSection();
     // if quizComplete is true then stop timer
     if (quizComplete || timerValue == 0) {
       return true;
@@ -73,6 +74,7 @@ const handleFormSubmit = () => {
 
 const renderTimerSection = () => {
   // use HTML as guide and build in JS
+  document.getElementById("timerValue").innerHTML = timerValue;
   // append section to main
 };
 
