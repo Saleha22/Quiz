@@ -32,7 +32,10 @@ const startTimer = () => {
     // decrement timer value
     timerValue--;
     // if quizComplete is true then stop timer
-    if (quizComplete) {
+    if (quizComplete || timerValue == 0) {
+      return true;
+    } else {
+      return false;
     }
     // check if timer reaches 0
     // if true render game over
