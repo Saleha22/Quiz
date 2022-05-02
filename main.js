@@ -83,7 +83,13 @@ const renderQuestionSection = () => {
   if (questionIndex < questions.length) {
     let question = questions[questionIndex];
     let currentAnswers = answers[questionIndex];
-    let output = `<span class='question'>${question}</span>`;
+    let output = `<span class='question'>${question}</span><br>`;
+    currentAnswers.forEach((answer) => {
+      answer = answer.split("|");
+
+      output += `<span class='answer'>${answer[1]}</span><br>`;
+    });
+    output = output + "<br/><button>submit</button>";
     document.getElementById("questionSection").innerHTML = output;
   } else {
     renderGameOver();
