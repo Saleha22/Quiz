@@ -41,7 +41,10 @@ const startTimer = () => {
     // if true render game over
   };
 
-  // setInterval of 1000ms (1s)
+  // setInterval of 1000ms (1s) (function(){
+  setInterval(function () {
+    countdown();
+  }, 1000);
 };
 
 const validateAnswer = () => {
