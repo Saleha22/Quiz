@@ -84,6 +84,12 @@ const renderQuestionSection = () => {
     let question = questions[questionIndex];
     let currentAnswers = answers[questionIndex];
     let output = `<span class='question'>${question}</span><br>`;
+   let currentAnswers<select name="" id="">
+    <option value=""></option>
+    <option value=""></option>
+    <option value=""></option>
+    <option value=""></option>
+  </select>
     currentAnswers.forEach((answer) => {
       answer = answer.split("|");
 
