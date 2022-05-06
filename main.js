@@ -84,18 +84,14 @@ const renderQuestionSection = () => {
     let question = questions[questionIndex];
     let currentAnswers = answers[questionIndex];
     let output = `<span class='question'>${question}</span><br>`;
-   let currentAnswers<select name="" id="">
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-  </select>
+
     currentAnswers.forEach((answer) => {
       answer = answer.split("|");
 
-      output += `<span class='answer'>${answer[1]}</span><br>`;
+      output += `<span onclick='validateAnswer(${answer[0]})'
+      class='answer'>${answer[1]}</span><br>`;
     });
-    output = output + "<br/><button>submit</button>";
+
     document.getElementById("questionSection").innerHTML = output;
   } else {
     renderGameOver();

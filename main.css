@@ -1,5 +1,8 @@
-button {
+button,
+.answer {
   background-color: chartreuse;
   width: 200px;
   border: 2px solid rgb(128, 0, 122);
+  margin: 2px;
+  display: block;
 }
