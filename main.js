@@ -61,6 +61,14 @@ const validateAnswer = (result) => {
   // if correct render success alert with message and status
   // set timeout for 500ms and then go to next question
   // if question is last question set quizComplete to true and then render form
+  if (questionIndex == questions.length) {
+    quizComplete = true;
+    renderForm();
+  } else {
+    questionIndex++;
+    renderQuestionSection();
+  }
+
   // if question is not last question then increment question index and render next question
 };
 
