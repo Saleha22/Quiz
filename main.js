@@ -123,6 +123,7 @@ const renderAlert = (message, status) => {
 };
 
 const renderForm = () => {
+  document.getElementById("fom").style.display = "block";
   // use HTML as guide and build in JS
   // append section to main
   // add submit event handler to form
