@@ -51,7 +51,11 @@ const startTimer = () => {
 const validateAnswer = (result) => {
   if (result == 0) {
     timerValue = timerValue - 5;
+    document.getElementById("status").innerHTML = "wrong";
+  } else {
+    document.getElementById("status").innerHTML = "correct";
   }
+  setTimeout(function () {}, 500);
   // if incorrect subtract 5 seconds from timerValue
   // if incorrect render error alert with message and status
   // if correct render success alert with message and status
