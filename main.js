@@ -17,6 +17,7 @@ const answers = [
 let questionIndex = 0;
 let timerValue = 10 * questions.length;
 let quizComplete = false;
+let finalScore;
 
 const onLoad = () => {
   // initialise local storage
@@ -61,11 +62,13 @@ const validateAnswer = (result) => {
   // if correct render success alert with message and status
   // set timeout for 500ms and then go to next question
   // if question is last question set quizComplete to true and then render form
-  if (questionIndex == questions.length) {
+
+  questionIndex++;
+
+  if (questionIndex === questions.length) {
     quizComplete = true;
     renderForm();
   } else {
-    questionIndex++;
     renderQuestionSection();
   }
 
@@ -74,40 +77,50 @@ const validateAnswer = (result) => {
 
 const handleFormSubmit = () => {
   // get value from input
+  const initials = document.getElementById("initials").value;
+
   // check if empty then render error alert with message and status
   // if not empty then create the score object
   // {
   //   fullName: "Bob Smith",
   //   score: 25
   // }
+  const score = {
+    fullName: initials,
+    score: finalScore,
+  };
   // push score object to LS
+  // get highscores in localstorage under the name quizHighsocres -> if none exist, create empty array as highscoresInLs
+  let highscoresInLs = JSON.parse(localStorage.getItem("quizHighscores")) || [];
+  highscoresInLs.push(score);
+  localStorage.setItem("quizHighscores", JSON.stringify(highscoresInLs));
   // render quizCompleteSection
+  renderQuizCompleteSection();
 };
 
 const renderTimerSection = () => {
   // use HTML as guide and build in JS
-  document.getElementById("timerValue").innerHTML = timerValue;
+  document.getElementById("timerValue").innerHTML =
+    "Your time remaining is " + timerValue;
   // append section to main
 };
 
 const renderQuestionSection = () => {
   // use HTML as guide and build in JS
-  if (questionIndex < questions.length) {
-    let question = questions[questionIndex];
-    let currentAnswers = answers[questionIndex];
-    let output = `<span class='question'>${question}</span><br>`;
 
-    currentAnswers.forEach((answer) => {
-      answer = answer.split("|");
+  let question = questions[questionIndex];
+  let currentAnswers = answers[questionIndex];
+  let output = `<span class='question'>${question}</span><br>`;
 
-      output += `<span onclick='validateAnswer(${answer[0]})'
+  currentAnswers.forEach((answer) => {
+    answer = answer.split("|");
+
+    output += `<span onclick='validateAnswer(${answer[0]})'
       class='answer'>${answer[1]}</span><br>`;
-    });
+  });
 
-    document.getElementById("questionSection").innerHTML = output;
-  } else {
-    renderGameOver();
-  }
+  document.getElementById("questionSection").innerHTML = output;
+
   // append section to main
   // add click event listener on #question-section
 };
@@ -123,14 +136,37 @@ const renderAlert = (message, status) => {
 };
 
 const renderForm = () => {
-  document.getElementById("fom").style.display = "block";
+  document.getElementById("form").style.display = "block";
+  finalScore = timerValue;
+  document.getElementById("questionSection").style.display = "none";
+  clearInterval(timerValue);
+  document.getElementById("timerValue").innerHTML = "";
+  document.getElementById("status").innerHTML = "";
+  document.getElementById("hs-alert").textContent =
+    "Your final score is: " + finalScore;
   // use HTML as guide and build in JS
   // append section to main
   // add submit event handler to form
+  const submitBtn = document.getElementById("submit-highscore");
+  submitBtn.addEventListener("click", handleFormSubmit);
 };
 
 const renderQuizCompleteSection = () => {
+  let highscoresInLs = JSON.parse(localStorage.getItem("quizHighscores")) || [];
+
   // use HTML as guide and build in JS
+  let highscoresSection = document.getElementById("highscoresSection");
+
+  for (let i = 0; i < highscoresInLs.length; i++) {
+    let highscore = document.createElement("p");
+    highscore.textContent =
+      "Player: " +
+      highscoresInLs[i].fullName +
+      "|| Score: " +
+      highscoresInLs[i].score;
+
+    highscoresSection.appendChild(highscore);
+  }
   // append section to main
 };
 
